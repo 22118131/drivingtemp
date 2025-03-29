@@ -116,3 +116,19 @@
 
 })(jQuery);
 
+
+function openCurrentLocation(event) {
+    event.preventDefault(); // Prevent the default link action
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position) => {
+            const lat = position.coords.latitude;
+            const lng = position.coords.longitude;
+            const mapUrl = `https://maps.app.goo.gl/FxtbzevPNzGWKoAa8`;
+            window.open(mapUrl, '_blank'); // Open in new tab
+        }, (error) => {
+            alert('Unable to access location. Please enable location services.');
+        });
+    } else {
+        alert('Geolocation is not supported by this browser.');
+    }
+}
